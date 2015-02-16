@@ -1,10 +1,13 @@
-﻿using System.Text;
+﻿using System.CodeDom;
+using System.Collections;
+using System.Collections.Generic;
+using System.Text;
 using NHibernate.DdlGen.Operations;
 
 namespace NHibernate.Migrations.Generation
 {
-    public interface IDdlOperationGenerator
+    public interface IDdlOperationStatementGenerator
     {
-        void AppendOperation(StringBuilder sb, int index, IDdlOperation operation);
+        IEnumerable<CodeStatement> GetStatements(IDdlOperation operation);
     }
 }

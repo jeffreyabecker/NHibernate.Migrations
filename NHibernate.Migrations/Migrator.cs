@@ -6,7 +6,7 @@ using NHibernate.Cfg;
 using NHibernate.Engine;
 using NHibernate.Migrations.DbMigrationStore;
 using NHibernate.Util;
-using Environment = NHibernate.Cfg.Environment;
+
 
 namespace NHibernate.Migrations
 {
@@ -24,7 +24,7 @@ namespace NHibernate.Migrations
         {
             _sessionFactory = (ISessionFactoryImplementor)sessionFactory;
 
-            IMigrationVersionStoreFactory migrationVersionStoreFactory = new NHibernateMigrationHistoryVersionStoreFactory();
+            IMigrationVersionStoreFactory migrationVersionStoreFactory = GetMigrationVersionStoreFactory(_sessionFactory.Settings.Properties);
 
             if (migrationVersionStoreFactory == null)
             {
@@ -35,7 +35,8 @@ namespace NHibernate.Migrations
             if (migrationFactory is ActivatorMigrationFactory)
                 ((ActivatorMigrationFactory)migrationFactory).AttachMigrationVersionStoreFactory(migrationVersionStoreFactory);
 
-            _migrationVersionStore = migrationVersionStoreFactory.GetMigrationVersionStore(_sessionFactory, PropertiesHelper.GetString(MigrationSettings.ContextName, _sessionFactory.Settings.Properties, null));
+            var context = PropertiesHelper.GetString(MigrationSettings.ContextName, _sessionFactory.Settings.Properties, null);
+            _migrationVersionStore = migrationVersionStoreFactory.GetMigrationVersionStore(_sessionFactory, context);
 
             _registeredMigrations = GetRegisterdMigrations(_sessionFactory.Settings.Properties)
                                .Select(migrationFactory.CreateMigration)
@@ -43,7 +44,7 @@ namespace NHibernate.Migrations
                                .ToList();
         }
 
-        private ICollection<System.Type> GetRegisterdMigrations(IDictionary<string, string> properties)
+        private IEnumerable<System.Type> GetRegisterdMigrations(IDictionary<string, string> properties)
         {
             var items = PropertiesHelper.GetString(MigrationSettings.RegisteredMigrations, properties, String.Empty);
             var typeNames = items.Split(';').Select(x => x.Trim()).Where(x => !String.IsNullOrEmpty(x)).ToList();
@@ -72,7 +73,7 @@ namespace NHibernate.Migrations
             {
                 migrationVersionStoreFactory =
                     (IMigrationVersionStoreFactory)
-                        Environment.BytecodeProvider.ObjectsFactory.CreateInstance(
+                        NHibernate.Cfg.Environment.BytecodeProvider.ObjectsFactory.CreateInstance(
                             ReflectHelper.ClassForName(migrationVersionStoreFactoryName));
             }
             return migrationVersionStoreFactory;

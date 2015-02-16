@@ -44,6 +44,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -76,7 +77,8 @@
     <Compile Include="Fluent\FluentBuilder.cs" />
     <Compile Include="Fluent\FluentMigration.cs" />
     <Compile Include="Fluent\OperationBuilderSurfaceExtensions.cs" />
-    <Compile Include="Generation\CSharpAddTableCommentsDdlOperationGenerator.cs" />
+    <Compile Include="Generation\Builder2.cs" />
+    <Compile Include="Generation\AddTableCommentsStatementGenerator.cs" />
     <Compile Include="Generation\CSharpAlterTableAddColumnDdlOperationGenerator.cs" />
     <Compile Include="Generation\CSharpAlterTableDropColumnDdlOperationGenerator.cs" />
     <Compile Include="Generation\CSharpCreateForeignKeyOperationGenerator.cs" />
@@ -86,10 +88,9 @@
     <Compile Include="Generation\CSharpDropForeignKeyDdlOperationGenerator.cs" />
     <Compile Include="Generation\CSharpDropIndexDdlOperationGenerator.cs" />
     <Compile Include="Generation\CSharpDropSequenceDdlOperationGenerator.cs" />
-    <Compile Include="Generation\CSharpDropTableDdlOperationGenerator.cs" />
-    <Compile Include="Generation\CSharpEnableForeignKeyConstratintDdlOperationGenerator.cs" />
-    <Compile Include="Generation\CSharpMigrationGenerator.cs" />
-    <Compile Include="Generation\DdlGeneratorBase.cs" />
+    <Compile Include="Generation\DdlOperationStatementGeneratorBase.cs" />
+    <Compile Include="Generation\DropTableDdlOperationStatementGenerator.cs" />
+    <Compile Include="Generation\EnableForeignKeyConstraintStatementGenerator.cs" />
     <Compile Include="Generation\IDdlOperationGenerator.cs" />
     <Compile Include="Generation\IMigrationGenerator.cs" />
     <Compile Include="Generation\MigrationGenerationArguments.cs" />
