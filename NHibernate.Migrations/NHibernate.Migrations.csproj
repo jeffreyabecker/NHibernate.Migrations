@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{228902A2-E467-494E-AA2C-5BD45ABE7513}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NHibernate.Migrations</RootNamespace>
+    <AssemblyName>NHibernate.Migrations</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\..\nhibernate-core\src\NHibernate\bin\Debug-2.0\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\..\nhibernate-core\src\NHibernate\bin\Debug-2.0\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\..\nhibernate-core\src\NHibernate\bin\Debug-2.0\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Linq">
+      <HintPath>..\..\nhibernate-core\src\NHibernate\bin\Debug-2.0\Remotion.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActivatorMigrationFactory.cs" />
+    <Compile Include="DbMigrationStore\CompressedSerializableType.cs" />
+    <Compile Include="DbMigrationStore\NHibernateMigrationHistory.cs" />
+    <Compile Include="DbMigrationStore\NHibernateMigrationHistoryMapping.cs" />
+    <Compile Include="DbMigrationStore\NHibernateMigrationHistoryVersionStore.cs" />
+    <Compile Include="DbMigrationStore\NHibernateMigrationHistoryVersionStoreFactory.cs" />
+    <Compile Include="DdlOperationBuilderSurface.cs" />
+    <Compile Include="Fluent\AlterDdlOperationBuilderExtensions.cs" />
+    <Compile Include="Fluent\AlterTableBuilderExtensions.cs" />
+    <Compile Include="Fluent\Builders\AlterTableBuilder.cs" />
+    <Compile Include="Fluent\Builders\FluentColumnModel.cs" />
+    <Compile Include="Fluent\Builders\IAlterTableBuilder.cs" />
+    <Compile Include="Fluent\Builders\IColumnBuilder.cs" />
+    <Compile Include="Fluent\Builders\IDdlOperationBuilder.cs" />
+    <Compile Include="Fluent\Builders\IDdlOperationBuilderSurface.cs" />
+    <Compile Include="Fluent\Builders\IIndexBuilder.cs" />
+    <Compile Include="Fluent\Builders\IndexBuilder.cs" />
+    <Compile Include="Fluent\Builders\ITableBuilder.cs" />
+    <Compile Include="Fluent\Builders\TableBuilder.cs" />
+    <Compile Include="Fluent\ColumnBuilderExtensions.cs" />
+    <Compile Include="Fluent\CreateDdlOperationBuilderExtensions.cs" />
+    <Compile Include="Fluent\DropOperationBuilderExtensions.cs" />
+    <Compile Include="Fluent\FluentBuilder.cs" />
+    <Compile Include="Fluent\FluentMigration.cs" />
+    <Compile Include="Fluent\OperationBuilderSurfaceExtensions.cs" />
+    <Compile Include="Generation\CSharpAddTableCommentsDdlOperationGenerator.cs" />
+    <Compile Include="Generation\CSharpAlterTableAddColumnDdlOperationGenerator.cs" />
+    <Compile Include="Generation\CSharpAlterTableDropColumnDdlOperationGenerator.cs" />
+    <Compile Include="Generation\CSharpCreateForeignKeyOperationGenerator.cs" />
+    <Compile Include="Generation\CSharpCreateIndexDdlOperationGenerator.cs" />
+    <Compile Include="Generation\CSharpCreateSequenceDdlOperationGenerator.cs" />
+    <Compile Include="Generation\CSharpDisableForeignKeyConstraintDdlOperationGenerator.cs" />
+    <Compile Include="Generation\CSharpDropForeignKeyDdlOperationGenerator.cs" />
+    <Compile Include="Generation\CSharpDropIndexDdlOperationGenerator.cs" />
+    <Compile Include="Generation\CSharpDropSequenceDdlOperationGenerator.cs" />
+    <Compile Include="Generation\CSharpDropTableDdlOperationGenerator.cs" />
+    <Compile Include="Generation\CSharpEnableForeignKeyConstratintDdlOperationGenerator.cs" />
+    <Compile Include="Generation\CSharpMigrationGenerator.cs" />
+    <Compile Include="Generation\DdlGeneratorBase.cs" />
+    <Compile Include="Generation\IDdlOperationGenerator.cs" />
+    <Compile Include="Generation\IMigrationGenerator.cs" />
+    <Compile Include="Generation\MigrationGenerationArguments.cs" />
+    <Compile Include="Generation\OperationGeneratorNotFoundException.cs" />
+    <Compile Include="IMigration.cs" />
+    <Compile Include="IMigrationConfigurationFactory.cs" />
+    <Compile Include="IMigrationFactory.cs" />
+    <Compile Include="IMigrationVersion.cs" />
+    <Compile Include="IMigrationVersionStore.cs" />
+    <Compile Include="IMigrationVersionStoreFactory.cs" />
+    <Compile Include="MigrationExtensions.cs" />
+    <Compile Include="MigrationSettings.cs" />
+    <Compile Include="MigrationVersionComparitor.cs" />
+    <Compile Include="MigrationVersionException.cs" />
+    <Compile Include="Migrator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
